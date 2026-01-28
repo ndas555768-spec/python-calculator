@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière | Premium Face Wash</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #a8d0e6;
+            --secondary-color: #f8c7cc;
+            --accent-color: #f76c6c;
+            --dark-color: #374785;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            /* make space for fixed header */
+            padding-top: 70px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            top: 0;
+            left: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .logo i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 90px 0 80px;
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 70px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 40px;
+            z-index: 2;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #555;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .bottle-container {
+            position: relative;
+            width: 300px;
+            height: 500px;
+        }
+
+        .bottle {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 40% 40% 40% 40% / 50% 50% 60% 60%;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bottle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(255, 255, 255, 0.3);
+            top: 10%;
+            left: 0;
+            border-radius: 50%;
+        }
+
+        .bottle-cap {
+            width: 80px;
+            height: 40px;
+            background-color: var(--dark-color);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: bubble-float 4s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(1) {
+            width: 25px;
+            height: 25px;
+            top: 70%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 15px;
+            height: 15px;
+            top: 60%;
+            left: 60%;
+            animation-delay: 0.5s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 20px;
+            height: 20px;
+            top: 40%;
+            left: 40%;
+            animation-delay: 1s;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--dark-color);
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: var(--light-color);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Ingredients Section */
+        .ingredients {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+
+        .ingredients-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .ingredients-list {
+            flex: 1;
+        }
+
+        .ingredient-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .ingredient-item:hover {
+            transform: translateX(10px);
+        }
+
+        .ingredient-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            color: var(--dark-color);
+            font-size: 24px;
+        }
+
+        .ingredient-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .ingredient-text p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .ingredients-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin: 0 20px;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 15px;
+            font-size: 18px;
+            transition: opacity 0.35s ease;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: rgba(55, 71, 133, 0.95);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes bubble-float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            33% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            66% {
+                transform: translateY(-10px) translateX(-5px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .ingredients-container {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: inline-block;
+            }
+
+            .nav-links.mobile-active {
+                display: flex;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                padding: 10px 20px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            }
+
+            .nav-links.mobile-active li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="Main Navigation">
+                <a href="#" class="logo" aria-label="Lumière home"><i class="fas fa-spa" aria-hidden="true"></i>Lumi<span>ère</span></a>
+
+                <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="nav-links" id="primary-navigation">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#ingredients">Ingredients</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div style="display:flex; align-items:center;">
+                    <div class="cart-icon" role="button" aria-label="Shopping cart">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="cart-count">2</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Experience the Art of <span>Clean Skin</span></h1>
+                <p>Lumière Face Wash combines the purity of natural ingredients with the science of skincare to give you a radiant, healthy glow. Gentle yet effective for all skin types.</p>
+                <div class="btn-container">
+                    <a href="#" class="btn shop-now">Shop Now</a>
+                    <a href="#features" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="bottle-container">
+                    <div class="bottle">
+                        <div class="bottle-cap"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span>Lumière</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf" aria-hidden="true"></i>
+                    </div>
+                    <h3>100% Natural</h3>
+                    <p>Formulated with botanical extracts and natural ingredients that nourish your skin without harsh chemicals.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tint" aria-hidden="true"></i>
+                    </div>
+                    <h3>Deep Hydration</h3>
+                    <p>Our unique formula penetrates deep into the skin, providing lasting hydration and preventing dryness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                    </div>
+                    <h3>Gentle Protection</h3>
+                    <p>Creates a protective barrier against environmental pollutants while maintaining your skin's natural balance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ingredients Section -->
+    <section class="ingredients" id="ingredients">
+        <div class="container">
+            <h2 class="section-title">Key <span>Ingredients</span></h2>
+            <div class="ingredients-container">
+                <div class="ingredients-list">
+                    <div class="ingredient-item">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-seedling" aria-hidden="true"></i>
+                        </div>
+                        <div class="ingredient-text">
+                            <h4>Aloe Vera</h4>
+                            <p>Soothes and hydrates the skin, reducing redness and irritation.</p>
+                        </div>
+                    </div>
+                    <div class="ingredient-item">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-lemon" aria-hidden="true"></i>
+                        </div>
+                        <div class="ingredient-text">
+                            <h4>Vitamin C</h4>
+                            <p>Brightens skin tone and reduces the appearance of dark spots.</p>
+                        </div>
+                    </div>
+                    <div class="ingredient-item">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-wind" aria-hidden="true"></i>
+                        </div>
+                        <div class="ingredient-text">
+                            <h4>Green Tea Extract</h4>
+                            <p>Rich in antioxidants that fight free radicals and prevent aging.</p>
+                        </div>
+                    </div>
+                    <div class="ingredient-item">
+                        <div class="ingredient-icon">
+                            <i class="fas fa-tint" aria-hidden="true"></i>
+                        </div>
+                        <div class="ingredient-text">
+                            <h4>Hyaluronic Acid</h4>
+                            <p>Retains moisture, leaving your skin plump and youthful.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ingredients-image">
+                    <div class="bottle-container">
+                        <div class="bottle">
+                            <div class="bottle-cap"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our <span>Customers Say</span></h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="stars" aria-hidden="true">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I've struggled with sensitive skin for years, but Lumière has been a game-changer. My skin feels clean, refreshed, and never tight or dry. It's the only face wash I'll use now!"</p>
+                    <p class="testimonial-author">- Sarah M.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Lumière</h3>
+                    <p>Art meets science in skincare. Experience the transformation with our premium face wash that celebrates your natural beauty.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Products</a></li>
+                        <li><a href="#ingredients">Ingredients</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new products and exclusive offers.</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year">2023</span> Lumière. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for beautiful skin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite">Item added to cart</div>
+
+    <script>
+        // Testimonials data
+        const testimonials = [
+            {
+                text: "I've struggled with sensitive skin for years, but Lumière has been a game-changer. My skin feels clean, refreshed, and never tight or dry. It's the only face wash I'll use now!",
+                author: "Sarah M.",
+                stars: 5
+            },
+            {
+                text: "The texture and scent are incredible! My skin has never looked better. I've received so many compliments since I started using Lumière Face Wash.",
+                author: "Jessica T.",
+                stars: 5
+            },
+            {
+                text: "As someone with oily skin, I was skeptical about trying a new face wash. But Lumière balanced my skin perfectly without over-drying. Highly recommend!",
+                author: "Michael R.",
+                stars: 5
+            }
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialElement = document.querySelector('.testimonial-text');
+        const authorElement = document.querySelector('.testimonial-author');
+        const starsElement = document.querySelector('.stars');
+
+        function renderTestimonial(index, instant = false) {
+            if (!testimonialElement || !authorElement || !starsElement) return;
+
+            const t = testimonials[index];
+
+            // Fade out
+            testimonialElement.style.opacity = 0;
+            authorElement.style.opacity = 0;
+            starsElement.style.opacity = 0;
+
+            const update = () => {
+                testimonialElement.textContent = `"${t.text}"`;
+                authorElement.textContent = `- ${t.author}`;
+
+                let starsHTML = '';
+                for (let i = 0; i < t.stars; i++) {
+                    starsHTML += '<i class="fas fa-star" aria-hidden="true"></i>';
+                }
+                starsElement.innerHTML = starsHTML;
+
+                // Fade in
+                requestAnimationFrame(() => {
+                    testimonialElement.style.opacity = 1;
+                    authorElement.style.opacity = 1;
+                    starsElement.style.opacity = 1;
+                    testimonialElement.style.transform = 'translateY(0)';
+                });
+            };
+
+            if (instant) {
+                update();
+            } else {
+                setTimeout(update, 300);
+            }
+        }
+
+        // initialize
+        renderTestimonial(0, true);
+
+        function rotateTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            renderTestimonial(currentTestimonial);
+        }
+
+        // Change testimonial every 5 seconds
+        setInterval(rotateTestimonial, 5000);
+
+        // Smooth scroll for navigation links with offset for fixed header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (!targetId || targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerOffset = 70; // matches body padding-top
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+
+                    // Close mobile nav if open
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks && navLinks.classList.contains('mobile-active')) {
+                        navLinks.classList.remove('mobile-active');
+                        document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+
+        // Add to cart animation & toast
+        const cartIcon = document.querySelector('.cart-icon');
+        const cartCount = document.querySelector('.cart-count');
+        const shopNowBtn = document.querySelector('.btn.shop-now');
+        const toast = document.getElementById('toast');
+
+        function showToast(message) {
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        if (shopNowBtn) {
+            shopNowBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Animate cart icon
+                if (cartIcon) {
+                    cartIcon.style.transform = 'scale(1.2)';
+                    setTimeout(() => { cartIcon.style.transform = 'scale(1)'; }, 300);
+                }
+
+                // Update cart count
+                if (cartCount) {
+                    let count = parseInt(cartCount.textContent) || 0;
+                    cartCount.textContent = count + 1;
+                }
+
+                // Show toast
+                showToast('Lumière Face Wash has been added to your cart!');
+            });
+        }
+
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                navLinks.classList.toggle('mobile-active');
+            });
+        }
+
+        // Set copyright year dynamically
+        const yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
